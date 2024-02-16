@@ -1,0 +1,36 @@
+{% extends "base.html.twig" %}
+
+{%  block body %}
+
+    <div class="container">
+        
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success mt-4">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+        <h1 class="mt-4">Modifier votre ingredient</h1>
+
+        {{ form_start (form) }}
+
+        <div class="mb-3">
+         {{ form_label(form.name) }}
+         {{ form_widget(form.name) }}
+         {{ form_errors(form.name) }}
+       </div>
+
+        <div class="mb-3">
+         {{ form_label(form.price) }}
+         {{ form_widget(form.price) }}
+         {{ form_errors(form.price) }}
+       </div>
+       <div> 
+           {{  form_row(form.submit) }}
+       </div>
+       
+  </div> 
+{{ form_end(form) }}
+    </div>
+{% endblock  %}
+

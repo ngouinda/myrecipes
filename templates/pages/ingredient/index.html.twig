@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}My recipes - Mes ingredients{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>Mes ingredients</h1>
+
+        <a href="{{ path('ingredient.new') }}" class="btn btn-primary mt-4">Ajouter un ingrédient</a>
+
+         {% for message in app.flashes('success') %}
+            <div class="alert alert-success mt-4">
+                {{ message }}
+            </div>
+        {% endfor %}
+        <div class="count mt-4">
+          <h4> Il y a {{ ingredient.getTotalItemCount }} au total </h4>
+       </div>
+        <table class="table table-hover">
+            <thead class="thead-dark">
+                <tr>
+                <th scope="col">Numéro</th>
+                <th scope="col">Name</th>
+                <th scope="col">Prix</th>
+                {# <th scope="col">Date</th> #}
+                </tr>
+            </thead>
+            <tbody>
+               {% for  ingredients in ingredient %}
+                    <tr class="table-primary">
+                    <th scope="row">{{ingredients.id}}</th>
+                    <td>{{ingredients.name}}</td>
+                    <td>{{ingredients.price}} €</td>
+                    {# <td>{{ingredients.created_at|date('d/m/Y') }}</td> #}
+                    </tr>   
+                 {% endfor %} 
+           </tbody>
+        </table>
+        <div class="navigation">
+           {{ knp_pagination_render(ingredient) }}
+       </div>
+{% endblock %}
